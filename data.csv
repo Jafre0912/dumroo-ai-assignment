@@ -1,0 +1,10 @@
+student_id,student_name,grade,class_section,region,homework_id,submission_status,submission_date,quiz_score,quiz_date,upcoming_quiz_topic,upcoming_quiz_date
+1001,Jafre Alam,8,A,North,HW-8A,Submitted,2025-11-10,85,2025-11-05,Algebra,2025-11-15
+1002,Pradeep patel,8,A,North,HW-8A,Not Submitted,,78,2025-11-05,Algebra,2025-11-15
+1003,Amit Patel,8,B,North,HW-8B,Submitted,2025-11-11,92,2025-11-06,Geometry,2025-11-16
+1004,Afzal noor,9,A,South,HW-9A,Submitted,2025-11-11,88,2025-11-07,Physics,2025-11-17
+1005,Vikram Verma,9,A,South,HW-9A,Not Submitted,,76,2025-11-07,Physics,2025-11-17
+1006,Meera Iyer,8,B,North,HW-8B,Submitted,2025-11-10,81,2025-11-06,Geometry,2025-11-16
+1007,Arjun Nair,10,C,West,HW-10C,Not Submitted,,65,2025-11-08,Chemistry,2025-11-18
+1008,Dia Mirza,10,C,West,HW-10C,Submitted,2025-11-11,95,2025-11-08,Chemistry,2025-11-18
+1009,Karan Gupta,8,A,North,HW-8A,Not Submitted,,72,2025-11-05,Algebra,2025-11-15
