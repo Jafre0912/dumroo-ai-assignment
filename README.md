@@ -1,72 +1,71 @@
-# Dumroo.ai - AI Admin Query Assignment
+## Dumroo.ai - Admin AI Query System
+This is my solution for the Dumroo.ai developer assignment.
+It’s a simple AI-powered web app where different admins can query a student dataset using plain English questions.
+The main focus of the project is to implement Role-Based Access Control (RBAC) so that each admin only sees the data they’re allowed to access.
 
-This project is a solution for the Dumroo.ai developer assignment. It demonstrates an AI-powered system that allows admins to query a student database using natural language, with a key focus on implementing Role-Based Access Control (RBAC).
+# Overview
+The app uses Streamlit for the UI and LangChain (with a Pandas DataFrame Agent) to connect the data with an OpenAI model.
+Admins can ask questions like:
+“Which students haven’t submitted their homework yet?”
+“What’s the average quiz score for Grade 8?”
+The app filters the dataset before sending it to the AI — meaning each role only interacts with its own subset of data.
+For example, a “Grade 8 Admin” will never see other grades’ data, even indirectly through the model.
 
-The system is built using **Python**, **Streamlit**, **Pandas**, and **LangChain** (with the Pandas DataFrame Agent).
+# Tech Stack
+Python 3.10+
+Streamlit – for building the interactive dashboard
+Pandas – for handling and filtering data
+LangChain (Experimental) – for connecting the AI model to the DataFrame
+OpenAI API – as the language model backend
 
-## 🛡️ Key Features
+# Key Highlights
+RBAC in Action: Each role (Grade 8 Admin, Regional Admin, Super Admin, etc.) only sees specific filtered data.
+Natural Language Queries: Instead of writing SQL or pandas code, admins can just ask questions in plain English.
+Interactive UI: Clean, minimal Streamlit interface that’s easy to test and demonstrate.
+Modular Design: The logic for loading data, filtering by role, and querying via AI is clearly separated — so it’s easy to extend or connect to a real database later.
 
-* **Natural Language Queries:** Admins can ask questions like "Which students haven't submitted homework?" instead of writing complex SQL.
-* **Role-Based Access Control (RBAC):** The core requirement. The system uses a Streamlit dropdown to simulate an admin logging in. The data (a Pandas DataFrame) is **pre-filtered based on the admin's role** *before* being passed to the AI. This ensures the AI (LangChain agent) literally cannot see or access data outside its permitted scope (e.g., a "Grade 8 Admin" can only see data for Grade 8).
-* **Bonus: Interactive UI:** A simple web interface built with **Streamlit** allows for easy interaction and demonstration.
-* **Bonus: Modular Code:** The data loading and agent creation logic are separated, making it easy to swap the CSV for a real database connection in the future.
+# Setup Guide
+1) Clone the repo
+git clone https://github.com/<your-username>/dumroo-ai-assignment
+cd dumroo-ai-assignment
 
-## 🛠️ Tech Stack
+2) Create and activate a virtual environment
+python -m venv venv
 
-* **Python 3.10+**
-* **Streamlit:** For the interactive web UI
-* **Pandas:** For data manipulation
-* **LangChain (`langchain-experimental`):** To create the Pandas DataFrame Agent
-* **OpenAI:** As the LLM backbone for the agent
+2) a. for Windows
+venv\Scripts\activate
 
-## ⚙️ Setup and Installation
+2) b. for macOS/Linux
+source venv/bin/activate
+Install dependencies
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone [Your-GitHub-Repo-URL]
-    cd [repository-folder]
-    ```
+pip install -r requirements.txt
+Run the Streamlit app
+streamlit run app.py
+Open your browser at http://localhost:8501
 
-2.  **Create a Virtual Environment (Recommended):**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows: .\venv\Scripts\activate
-    ```
+# How It Works:
+Enter your OpenAI API key in the sidebar (the app doesn’t store it).
+Choose your Admin Role — this determines which part of the dataset you can see.
+Type a question in the input box (e.g., “Show all Grade 8 students with pending homework”).
+The AI will answer based only on your filtered dataset.
 
-3.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+# Example Queries:-
+Grade 8 Admin:
+“Who hasn’t submitted homework yet?”
+“Average quiz score for my students?”
+“How many students are in Section A?”
 
-4.  **Get an OpenAI API Key:**
-    * You will need an API key from [OpenAI](https://platform.openai.com/).
-    * The application will ask for this key in the sidebar (it is not stored).
+# Region South Admin:
+“Show me the Grade 9 performance data.”
+“List students who missed assignments.”
 
-## 🚀 How to Run
+# Super Admin:
+“Total number of students?”
+“Compare quiz averages between Grade 8 and Grade 10.”
+“List all students from the North region.”
 
-1.  Ensure your terminal is in the project's root directory.
-2.  Run the Streamlit app:
-    ```bash
-    streamlit run app.py
-    ```
-3.  A new tab will open in your browser at `http://localhost:8501`.
-4.  Enter your OpenAI API Key in the sidebar.
-5.  Select an Admin Role to test the RBAC.
-6.  Type your query in the text box and press "Get Answer".
-
-## 🧪 Example Queries to Try
-
-* **Role: Admin - Grade 8**
-    * "Which students haven't submitted their homework yet?"
-    * "What is the average quiz score for my students?"
-    * "How many students are in section A?"
-    * "List all upcoming quizzes scheduled for next week" (The AI will correctly parse 'next week' from today's date)
-
-* **Role: Admin - Region South**
-    * "Show me performance data for Grade 9"
-    * "Which students missed their homework?"
-
-* **Role: Super Admin (Platform-Wide)**
-    * "How many students are there in total?"
-    * "Compare the average quiz score of Grade 8 and Grade 10"
-    * "List all students from the West region."
+# Notes:
+The dataset used here (data.csv) is mock data for demonstration purposes.
+The app is designed to easily connect to a real database or API later.
+The .env file (for your OpenAI key) should not be committed — it’s already in .gitignore.
